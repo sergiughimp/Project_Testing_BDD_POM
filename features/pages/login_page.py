@@ -11,6 +11,9 @@ class LoginPage:
     PASSWORD_SELECTOR = (By.ID, 'user[password]')
     SUBMIT_BUTTON_SELECTOR = (By.XPATH, '//button[@type="submit"]')
     SIGNED_IN_SUCCESSFULLY_SELECTOR = (By.XPATH, '//p[@class="message-text"]')
+    ERROR_MSG_SELECTOR = (By.XPATH, '//p[@class="message-text"]')
+    VIEW_MORE_COURSES_BUTTON_SELECTOR = (By.XPATH, '//*[@id="search-form"]/div[2]/a')
+    SUCCESS_MSG_SELECTOR = (By.XPATH, '//p[@class="message-text"]')
 
     def __init__(self, browser):
         self.driver = browser.driver
@@ -34,3 +37,20 @@ class LoginPage:
         login_button = self.driver.find_element(*self.SUBMIT_BUTTON_SELECTOR)
         login_button.click()
         time.sleep(5)
+
+    def get_error_message(self):
+        error_message_box = self.driver.find_element(*self.ERROR_MSG_SELECTOR)
+        return error_message_box.text
+
+    def get_success_message(self):
+        success_message_box = self.driver.find_element(*self.SUCCESS_MSG_SELECTOR)
+        return success_message_box.text
+
+    def login(self, username, password):
+        self.input_username(username)
+        self.input_password(password)
+        self.click_submit()
+
+    def click_view_more_courses(self):
+        view_more_courses_button = self.driver.find_element(*self.VIEW_MORE_COURSES_BUTTON_SELECTOR)
+        view_more_courses_button.click()

@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
 
 
-class EnrollmentsPage:
+class CollectionsPage:
 
-    URL = 'https://courses.ultimateqa.com/enrollments'
+    URL = 'https://courses.ultimateqa.com/collections'
     TITLE_SELECTOR = (By.CSS_SELECTOR, 'title')
     def __init__(self, browser):
         self.driver = browser.driver
